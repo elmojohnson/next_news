@@ -18,7 +18,7 @@ export default function Weather() {
 
   const getWeather = async () => {
     const data = await axios.get(
-      `http://api.weatherapi.com/v1/forecast.json?key=db30971f617f4893a0b234429211311%20&q=Sydney&days=10&aqi=no&alerts=no`
+      `https://api.weatherapi.com/v1/forecast.json?key=db30971f617f4893a0b234429211311%20&q=Sydney&days=10&aqi=no&alerts=no`
     );
     const w = data.data.current;
     setWeather({
