@@ -1,45 +1,35 @@
 import { Badge, Card, Image, Button } from "react-bootstrap";
 
 export default function NewsItem({
-  author,
-  title,
-  description,
-  url,
-  source,
-  image,
-  category,
-  published_at,
+  id,
+  pillarName,
+  sectionName,
+  webPublicationDate,
+  webTitle,
+  webUrl,
 }) {
-
-  const createMarkup = () => {
-    return {__html: description}
-  }
-
-  const viewNews = () => {
-    window.location.href = url
-  }
-
-  const stringDate = new Date(published_at);
+  const stringDate = new Date(webPublicationDate);
   return (
     <Card className="mb-3 rounded-3">
-      {image && <Image src={image} />}
       <Card.Body>
-        <Card.Title className="lh-1">{title}</Card.Title>
+        <Card.Title className="lh-1">{webTitle}</Card.Title>
         <p className="text-muted mb-2 small">{stringDate.toDateString()}</p>
-        <div dangerouslySetInnerHTML={createMarkup()} />
         <div className="mb-2">
-          {source && (
-            <Badge bg="light" className="border text-muted fw-normal me-2">
-              {source}
-            </Badge>
-          )}
-          {author && (
-            <Badge bg="light" className="border text-muted fw-normal">
-              {author}
-            </Badge>
-          )}
+          <Badge bg="light" className="border text-muted fw-normal me-2">
+            {pillarName}
+          </Badge>
+          <Badge bg="light" className="border text-muted fw-normal">
+            {sectionName}
+          </Badge>
         </div>
-        <Button className="float-end" size="sm" onClick={viewNews}>View Article</Button>
+        <Button
+          variant="primary"
+          className="float-end"
+          size="sm"
+          onClick={() => (window.location.href = webUrl)}
+        >
+          View Article
+        </Button>
       </Card.Body>
     </Card>
   );
